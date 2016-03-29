@@ -13,8 +13,9 @@
 
     "jsList" : [
         "src/resource.js",
-        "src/app.js",
         "src/GameLayer.js",
-        "src/Player.js"
+        "src/Player.js",
+        "src/Way.js",
+        "src/BG.js"
     ]
 }
