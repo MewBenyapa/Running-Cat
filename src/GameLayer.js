@@ -1,22 +1,12 @@
 var GameLayer = cc.LayerColor.extend({
     init: function() {
-        this._super( new cc.Color( 61, 177, 255, 255 ) );
-        this.setPosition( new cc.Point( 0, 0 ) );
         
-        this.player = new Player();
-        this.player.setPosition( new cc.Point( 550, 50 ) );
-        this.addChild( this.player );
-        this.player.scheduleUpdate();
+        this.setBG();
+        this.setPlayer();
+        this.setWay();
+        this.setEnemy();
         
-        this.way = new Way();
-        this.way.setPosition( new cc.Point( 300, 50 ) );
-        this.addChild( this.way );
-        this.way.scheduleUpdate();
-//        
-//        this.bg = new BG();
-//        this.bg.setPosition( new cc.Point( 200, 200 ) );
-//        this.addChild( this.bg );
-//        this.bg.scheduleUpdate();
+        this.addKeyboardHandlers();
         
         return true;
     },
@@ -34,11 +24,49 @@ var GameLayer = cc.LayerColor.extend({
     },
     
     onKeyDown: function( keyCode, event ) {
-        
+        if ( keyCode == 39 ) {
+            this.player.turnRigth();    
+        } else if ( keyCode == 37 ) {
+            this.player.turnLeft();
+        } else if ( keyCode == 38 ) {
+            this.player.jump();
+        }
     },
  
     onKeyUp: function( keyCode, event ) {
+        if ( this.player.getPosition() > 50 ) {
+            this.player.fallDown();
+        }
+    },
+    
+    setPlayer: function() {
+        this.player = new Player();
+        this.player.setPosition( new cc.Point( 550, 50 ) );
+        this.addChild( this.player );
+        this.player.scheduleUpdate();
+    },
+    
+    setWay: function() {
+        this.way = new Way();
+        this.way.setPosition( new cc.Point( 300, 10 ) );
+        this.addChild( this.way );
+        this.way.scheduleUpdate();
+    },
+    
+    setBG: function() {
+        this.bg = new BG();
+        this.bg.setPosition( new cc.Point( 300, 350 ) );
+        this.addChild( this.bg );
+        this.bg.scheduleUpdate();   
+    },
+    
+    setEnemy: function() {
+        this.enemy = new Enemy();
+        this.enemy.setPosition( new cc.Point( 100, 650 ) );
+        this.addChild( this.enemy );
+        this.enemy.scheduleUpdate();
     }
+    
 });
  
 var StartScene = cc.Scene.extend({
