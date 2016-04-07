@@ -2,7 +2,7 @@ var Player = cc.Sprite.extend ({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/Cat.png' );
-        this.vy = 15;
+        this.vy = 2;
     },
     
     turnRigth: function() {
@@ -18,15 +18,13 @@ var Player = cc.Sprite.extend ({
     jump: function() {
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
-        this.vy += .5;
+        this.vy += 50;
     },
     
-    fallDown: function() {
-        if ( pos.y > 50 ) {
-            var pos = this.getPosition();
-            this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
-            this.vy += -.001;
-        }
+    fallDown: function( dt ) {
+        var pos = this.getPosition();
+        this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
+        this.vy += -2;
     }
     
 });

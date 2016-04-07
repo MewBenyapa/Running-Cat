@@ -6,6 +6,7 @@ var GameLayer = cc.LayerColor.extend({
         this.setWay();
         this.setEnemy();
         
+        
         this.addKeyboardHandlers();
         
         return true;
@@ -34,7 +35,7 @@ var GameLayer = cc.LayerColor.extend({
     },
  
     onKeyUp: function( keyCode, event ) {
-        if ( this.player.getPosition() > 50 ) {
+        if ( this.player.getPosition() != 50 ) {
             this.player.fallDown();
         }
     },
@@ -62,7 +63,22 @@ var GameLayer = cc.LayerColor.extend({
     
     setEnemy: function() {
         this.enemy = new Enemy();
-        this.enemy.setPosition( new cc.Point( 100, 650 ) );
+        this.enemy.setPosition( new cc.Point( 100, 700 ) );
+        this.addChild( this.enemy );
+        this.enemy.scheduleUpdate();
+        
+        this.enemy = new Enemy();
+        this.enemy.setPosition( new cc.Point( 200, 720 ) );
+        this.addChild( this.enemy );
+        this.enemy.scheduleUpdate();
+        
+         this.enemy = new Enemy();
+        this.enemy.setPosition( new cc.Point( 350, 800 ) );
+        this.addChild( this.enemy );
+        this.enemy.scheduleUpdate();
+        
+         this.enemy = new Enemy();
+        this.enemy.setPosition( new cc.Point( 500, 780 ) );
         this.addChild( this.enemy );
         this.enemy.scheduleUpdate();
     }
