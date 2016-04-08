@@ -6,7 +6,6 @@ var GameLayer = cc.LayerColor.extend({
         this.setWay();
         this.setEnemy();
         
-        
         this.addKeyboardHandlers();
         
         return true;
@@ -31,13 +30,12 @@ var GameLayer = cc.LayerColor.extend({
             this.player.turnLeft();
         } else if ( keyCode == 38 ) {
             this.player.jump();
+            //this.player.fallDown();
         }
     },
  
     onKeyUp: function( keyCode, event ) {
-        if ( this.player.getPosition() != 50 ) {
-            this.player.fallDown();
-        }
+    
     },
     
     setPlayer: function() {
