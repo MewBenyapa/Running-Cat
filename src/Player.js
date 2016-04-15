@@ -24,7 +24,6 @@ var Player = cc.Sprite.extend ({
     fallDown: function( dt ) {
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
-        //this.vy += 2;
     }
     
 });

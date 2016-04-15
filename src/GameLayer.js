@@ -1,9 +1,9 @@
-var GameLayer = cc.LayerColor.extend({
+var GameLayer = cc.LayerColor.extend ({
     init: function() {
         
         this.setBG();
         this.setPlayer();
-        this.setWay();
+        //this.setWay();
         this.setEnemy();
         
         this.addKeyboardHandlers();
@@ -30,7 +30,6 @@ var GameLayer = cc.LayerColor.extend({
             this.player.turnLeft();
         } else if ( keyCode == 38 ) {
             this.player.jump();
-            //this.player.fallDown();
         }
     },
  
@@ -60,27 +59,15 @@ var GameLayer = cc.LayerColor.extend({
     },
     
     setEnemy: function() {
-        this.enemy = new Enemy();
-        this.enemy.setPosition( new cc.Point( 100, 700 ) );
-        this.addChild( this.enemy );
-        this.enemy.scheduleUpdate();
-        
-        this.enemy = new Enemy();
-        this.enemy.setPosition( new cc.Point( 200, 720 ) );
-        this.addChild( this.enemy );
-        this.enemy.scheduleUpdate();
-        
-         this.enemy = new Enemy();
-        this.enemy.setPosition( new cc.Point( 350, 800 ) );
-        this.addChild( this.enemy );
-        this.enemy.scheduleUpdate();
-        
-         this.enemy = new Enemy();
-        this.enemy.setPosition( new cc.Point( 500, 780 ) );
-        this.addChild( this.enemy );
-        this.enemy.scheduleUpdate();
+        var posYOfEnemy = [ 1000, 800, 1200, 700 ];
+        var posXOfEnemy = [ 100, 220, 350, 500 ];
+        for ( var i = 0; i < 4; i++ ) {
+            this.enemy = new Enemy();
+            this.enemy.setPosition( new cc.Point( posXOfEnemy[i], posYOfEnemy[i] ) );
+            this.addChild( this.enemy );
+            this.enemy.scheduleUpdate();
+        }
     }
-    
 });
  
 var StartScene = cc.Scene.extend({

@@ -8,6 +8,10 @@ var Enemy = cc.Sprite.extend({
     update: function( dt ) {
             var pos = this.getPosition();
             this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
-            this.vy += -.005;
+            this.vy += -.01;
+//        if (pos.y == 0) {
+//            this.getPosition();
+//            this.setPosition( new cc.Point( pos.x, 700 ) );
+//        }
     }
 });
