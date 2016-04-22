@@ -5,6 +5,7 @@ var GameLayer = cc.LayerColor.extend ({
         this.setPlayer();
         //this.setWay();
         this.setEnemy();
+        this.setFish();
         
         this.addKeyboardHandlers();
         
@@ -34,7 +35,13 @@ var GameLayer = cc.LayerColor.extend ({
     },
  
     onKeyUp: function( keyCode, event ) {
+        
+    },
     
+    update: function() {
+	   if ( this.fish.closeTo( this.player ) ) {
+	       this.fish.randomPosition();
+	   }
     },
     
     setPlayer: function() {
@@ -67,6 +74,13 @@ var GameLayer = cc.LayerColor.extend ({
             this.addChild( this.enemy );
             this.enemy.scheduleUpdate();
         }
+    },
+    
+    setFish: function() {
+        this.fish = new Fish();
+        this.fish.randomPosition();
+        this.addChild( this.fish );
+        this.fish.scheduleUpdate();
     }
 });
  
