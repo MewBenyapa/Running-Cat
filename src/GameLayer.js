@@ -3,7 +3,7 @@ var GameLayer = cc.LayerColor.extend ({
         
         this.setBG();
         this.setPlayer();
-        //this.setWay();
+        this.setWay();
         this.setEnemy();
         this.setFish();
         
@@ -53,8 +53,11 @@ var GameLayer = cc.LayerColor.extend ({
     },
     
     setWay: function() {
+//        for (var i = 0; i < 6; i++) {
+//            
+//        }
         this.way = new Way();
-        this.way.setPosition( new cc.Point( 300, 10 ) );
+        this.way.randomPosition();
         this.addChild( this.way );
         this.way.scheduleUpdate();
     },

@@ -10,7 +10,6 @@ var Player = cc.Sprite.extend ({
     turnRigth: function() {
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x + 30, pos.y) );
-        pos.x *= this.accX;
         if ( pos.x >= 600 ) {
             this.setPosition( new cc.Point( 0, pos.y ) );
         }
