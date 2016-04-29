@@ -3,12 +3,14 @@ var Player = cc.Sprite.extend ({
         this._super();
         this.initWithFile( 'res/images/Cat.png' );
         this.vy = 10;
+        this.accX = 0.1;
         this.started = false;
     },
     
     turnRigth: function() {
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x + 30, pos.y) );
+        pos.x *= this.accX;
         if ( pos.x >= 600 ) {
             this.setPosition( new cc.Point( 0, pos.y ) );
         }
@@ -23,27 +25,26 @@ var Player = cc.Sprite.extend ({
     },
     
     jump: function() {
+        this.vy = Player.JUMPING_VELOCITY;
         var pos = this.getPosition();
-        this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
+        this.setPositionY( this.getPositionY() + this.vy );
         this.vy += 5;
-//        var pos = this.getPosition();
-//        this.setPositionY( this.getPositionY()+ this.vy );
- //       this.vy += 5;
     },
     
-    fallDown: function( dt ) {
-        var pos = this.getPosition();
-        this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
-        this.vy -= 2;
-//       this.vy=-20;
+    update: function( dt ) {
+        if (this.getPositionY() > 50) {
+            var pos = this.getPosition();
+            this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
+            this.vy += -1;
+        }
     },
     
-//    update : function() {
-//        if ( this.getPositionY() >= 50 ) {
-//            this.fallDown();
-//        } else if ( this.getPositionY() ) {
-//            this.setPositionY( 50 );
-//        }
-//    }
-    
+    start: function() {
+        this.started = true;
+    }
+
 });
+
+Player.G = -1;
+Player.STARTING_VELOCITY = 15;
+Player.JUMPING_VELOCITY = 15;

@@ -49,6 +49,7 @@ var GameLayer = cc.LayerColor.extend ({
         this.player.setPosition( new cc.Point( 550, 50 ) );
         this.addChild( this.player );
         this.player.scheduleUpdate();
+        console.log("This method is called");
     },
     
     setWay: function() {
@@ -77,10 +78,13 @@ var GameLayer = cc.LayerColor.extend ({
     },
     
     setFish: function() {
-        this.fish = new Fish();
-        this.fish.randomPosition();
-        this.addChild( this.fish );
-        this.fish.scheduleUpdate();
+        for (var i = 0; i < 3; i++) {
+            this.fish = new Fish();
+            this.fish.randomPosition();
+            this.addChild( this.fish );
+            this.fish.scheduleUpdate();
+        }
+        
     }
 });
  
