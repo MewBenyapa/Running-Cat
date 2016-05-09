@@ -18,6 +18,7 @@
         "src/Way.js",
         "src/BG.js",
         "src/Enemy.js",
-        "src/Fish.js"
+        "src/Fish.js",
+        "src/Heart.js"
     ]
 }

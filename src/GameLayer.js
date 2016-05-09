@@ -6,6 +6,9 @@ var GameLayer = cc.LayerColor.extend ({
         this.setWay();
         this.setEnemy();
         this.setFish();
+        this.setHeart();
+        
+        this.scheduleUpdate();
         
         this.addKeyboardHandlers();
         
@@ -49,17 +52,17 @@ var GameLayer = cc.LayerColor.extend ({
         this.player.setPosition( new cc.Point( 550, 50 ) );
         this.addChild( this.player );
         this.player.scheduleUpdate();
-        console.log("This method is called");
     },
     
     setWay: function() {
-//        for (var i = 0; i < 6; i++) {
-//            
-//        }
-        this.way = new Way();
-        this.way.randomPosition();
-        this.addChild( this.way );
-        this.way.scheduleUpdate();
+        var posX = [ 700, 250, 200, 650 ];
+        var posY = [ 400, 20, 250, 130 ];
+        for (var i = 0; i < 4; i++) {
+          this.way = new Way();
+          this.way.setPosition( new cc.Point( posX[i], posY[i] ) );
+          this.addChild( this.way );
+          this.way.scheduleUpdate();   
+        }
     },
     
     setBG: function() {
@@ -71,7 +74,7 @@ var GameLayer = cc.LayerColor.extend ({
     
     setEnemy: function() {
         var posYOfEnemy = [ 1000, 800, 1200, 700 ];
-        var posXOfEnemy = [ 100, 220, 350, 500 ];
+        var posXOfEnemy = [ 100, 220, 350, 480 ];
         for ( var i = 0; i < 4; i++ ) {
             this.enemy = new Enemy();
             this.enemy.setPosition( new cc.Point( posXOfEnemy[i], posYOfEnemy[i] ) );
@@ -81,13 +84,35 @@ var GameLayer = cc.LayerColor.extend ({
     },
     
     setFish: function() {
-        for (var i = 0; i < 3; i++) {
+        //for (var i = 0; i < 3; i++) {
             this.fish = new Fish();
             this.fish.randomPosition();
             this.addChild( this.fish );
             this.fish.scheduleUpdate();
-        }
+       // }
         
+//        var posX = [ 50, 500, 350 ];
+//        var posY = [ 200, 310, 310 ];
+//        for ( var i = 0; i < 4; i++ ) {
+//            this.fish = new Fish();
+//            this.fish.setPosition( new cc.Point( posX[i], posY[i] ) );
+//            this.addChild( this.fish );
+//            this.fish.scheduleUpdate();
+//        }
+        
+    },
+    
+    updateFish: function() {
+        if ( this.gold.closeTo( this.ship ) ) {
+            this.gold.randomPosition();
+        }
+    },
+    
+    setHeart: function() {
+        this.heart = new Heart();
+        this.heart.setPosition( new cc.Point( 500, 670 ) );
+        this.addChild( this.heart );
+        this.heart.scheduleUpdate();
     }
 });
  

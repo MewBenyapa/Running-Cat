@@ -1,6 +1,6 @@
 var BG = cc.Sprite.extend({
     ctor: function() {
         this._super();
-        this.initWithFile( 'res/images/Sky.png' );
+        this.initWithFile( 'res/images/sky1.png' );
    }
 });

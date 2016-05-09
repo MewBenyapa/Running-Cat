@@ -45,5 +45,4 @@ var Player = cc.Sprite.extend ({
 });
 
 Player.G = -1;
-Player.STARTING_VELOCITY = 15;
 Player.JUMPING_VELOCITY = 15;
