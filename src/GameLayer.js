@@ -100,12 +100,12 @@ var GameLayer = cc.LayerColor.extend ({
     setHeart: function() {
         
         this.heart = new Heart();
-        this.heart.setPosition( new cc.Point( 450, 650 ) );
+        this.heart.setPosition( new cc.Point( 510, 650 ) );
         this.addChild( this.heart );
         this.heart.scheduleUpdate();
         
-        this.heartLabel = cc.LabelTTF.create(": " + numHeart, 'Peach Play', 40);
-        this.heartLabel.setPosition(new cc.Point( 500, 650 ) );
+        this.heartLabel = cc.LabelTTF.create( numHeart, 'Peach Play', 40 );
+        this.heartLabel.setPosition(new cc.Point( 550, 650 ) );
         this.heartLabel.setColor( cc.color( 112, 128, 114 ) );
         this.addChild( this.heartLabel );
     },

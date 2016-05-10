@@ -7,6 +7,8 @@ var FirstScene = cc.LayerColor.extend({
 
         this.playScene();
         
+        //this.howToButton();
+        
         this.addKeyboardHandlers();
         
     },
@@ -25,14 +27,19 @@ var FirstScene = cc.LayerColor.extend({
 		          self.playScene( keyCode, event );
 	           }
 	       }, this );
-    }
-    //,
+    },
     
-//    howToButton: function() {
-//        this.howToButtonItem = new cc.MenuItemImage( 'res/images/howToButton.png', 
-//        function() {
-//            this.howToButton    
-//        })
+//    howToButton : function(){
+//        this.howToItem = new cc.MenuItemImage('res/images/howtoButton.png', 
+//                                              function() {
+//             var showHowTo = new HowTo();
+//        showHowTo.init();
+//        this.addChild( showHowTo );
+//            
+//        } ,this);
+//        this.howto = new cc.Menu( this.howToItem );
+//        this.howto.setPosition( 50, 40 );
+//        this.addChild( this.howto );                                   
 //    }
     
 });
