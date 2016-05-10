@@ -10,14 +10,6 @@ var Fish = cc.Sprite.extend({
         this.setPosition( new cc.Point( x, y ) );
     },
     
-//    update: function() {
-//        var pos = this.getPosition();
-//            this.setPosition( new cc.Point( pos.x, pos.y - 3 ) );
-//        if (pos.y <= 0) {
-//            this.setPosition( new cc.Point( pos.x, 700 ) );
-//        }
-//    },
-    
     closeTo: function( obj ) {
 	    var myPos = this.getPosition();
 	    var oPos = obj.getPosition();

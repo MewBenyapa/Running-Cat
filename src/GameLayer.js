@@ -1,4 +1,5 @@
 var score = 0;
+var numHeart = 3;
 
 var GameLayer = cc.LayerColor.extend ({
     init: function() {
@@ -44,11 +45,24 @@ var GameLayer = cc.LayerColor.extend ({
         
     },
     
-    update: function() {
-	   if ( this.fish.closeTo( this.player ) ) {
-	       this.fish.randomPosition();
-	   }
-        this.updateFish();
+     update: function() {
+        if ( this.fish.closeTo( this.player ) ) {
+            this.fish.randomPosition();
+            this.updateScore();
+            this.fish.randomPosition();
+        }
+        
+        if ( this.enemy.closeTo( this.player ) ) {
+            this.enemy.randomPosition();
+            this.updateHeart();
+        }
+        for (var i = 0; i < 4; i++) {
+            if (numHeart <= 0) {
+                cc.director.runScene( new GameOverLayer() );
+                score = 0;
+                numHeart = 3;
+            }
+        }
     },
     
     setPlayer: function() {
@@ -76,12 +90,6 @@ var GameLayer = cc.LayerColor.extend ({
         }
     },
     
-    updateEnemy: function() {
-        if ( this.enemy.closeTo( this.player ) ) {
-            
-        }
-    },
-    
     setFish: function() {
         this.fish = new Fish();
         this.fish.randomPosition();
@@ -89,38 +97,34 @@ var GameLayer = cc.LayerColor.extend ({
         this.fish.scheduleUpdate();
     },
     
-    updateFish: function() {
-        if ( this.fish.closeTo( this.player ) ) {
-            this.updateScore();
-            this.fish.randomPosition();
-        }
+    setHeart: function() {
+        
+        this.heart = new Heart();
+        this.heart.setPosition( new cc.Point( 450, 650 ) );
+        this.addChild( this.heart );
+        this.heart.scheduleUpdate();
+        
+        this.heartLabel = cc.LabelTTF.create(": " + numHeart, 'Peach Play', 40);
+        this.heartLabel.setPosition(new cc.Point( 500, 650 ) );
+        this.heartLabel.setColor( cc.color( 112, 128, 114 ) );
+        this.addChild( this.heartLabel );
     },
     
-    setHeart: function() {
-        var posXOfHeart = [ 470, 510, 550 ];
-
-        for ( var i = 0; i < 3; i++ ) {
-            this.heart = new Heart();
-            this.heart.setPosition( new cc.Point( posXOfHeart[i], 650 ) );
-            this.addChild( this.heart );
-            this.heart.scheduleUpdate();
-        }
-        
-//        this.label = cc.LabelTTF.create(": 0", 'Peach Play', 40);
-//        this.label.setPosition(new cc.Point( 500, 650));
-//        this.addChild(this.label);
+    updateHeart: function() {
+        numHeart -= 1;
+        this.heartLabel.setString( ": " + numHeart );
     },
     
     setScore: function() {
         this.scoreLabel = cc.LabelTTF.create( "SCORE: " + score, 'Peach Play', 40 );
-        this.scoreLabel.setPosition(new cc.Point( 100, 650 ) );
+        this.scoreLabel.setPosition( new cc.Point( 100, 650 ) );
+        this.scoreLabel.setColor( cc.color( 112, 128, 114 ) );
         this.addChild( this.scoreLabel );
     },
     
     updateScore: function() {
-        score += 10;
-        this.setScore();
-        this.setString( "SCORE: " + String.valueOf( score ) );
+        score += 1;
+        this.scoreLabel.setString( "SCORE: " + score );
     }
     
 });

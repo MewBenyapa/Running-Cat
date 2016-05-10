@@ -20,7 +20,8 @@
         "src/Fish.js",
         "src/Heart.js",
         "src/FirstScene.js",
-        "src/StartScene.js",
-        "src/Start.js"
+        "src/StartGame.js",
+        "src/EndGame.js",
+        "src/GameOver.js"
     ]
 }

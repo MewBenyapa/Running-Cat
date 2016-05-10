@@ -12,6 +12,13 @@ var Enemy = cc.Sprite.extend({
         }
     },
     
+    randomPosition: function() {
+        var x = (Math.random() * 500) + 5;
+        var y = (Math.random() * 600) + 5;
+        this.setPosition( new cc.Point( x, y ) );
+    },
+    
+    
     closeTo: function( obj ) {
 	    var myPos = this.getPosition();
 	    var oPos = obj.getPosition();
