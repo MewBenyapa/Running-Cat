@@ -1,19 +1,22 @@
+var score = 0;
+
 var GameLayer = cc.LayerColor.extend ({
     init: function() {
         
         this.setBG();
         this.setPlayer();
-        this.setWay();
         this.setEnemy();
         this.setFish();
         this.setHeart();
-        
+        this.setScore();
+                
         this.scheduleUpdate();
         
         this.addKeyboardHandlers();
         
         return true;
     },
+    
      addKeyboardHandlers: function() {
         var self = this;
         cc.eventManager.addListener({
@@ -54,17 +57,6 @@ var GameLayer = cc.LayerColor.extend ({
         this.player.scheduleUpdate();
     },
     
-    setWay: function() {
-        var posX = [ 700, 250, 200, 650 ];
-        var posY = [ 400, 20, 250, 130 ];
-        for (var i = 0; i < 4; i++) {
-          this.way = new Way();
-          this.way.setPosition( new cc.Point( posX[i], posY[i] ) );
-          this.addChild( this.way );
-          this.way.scheduleUpdate();   
-        }
-    },
-    
     setBG: function() {
         this.bg = new BG();
         this.bg.setPosition( new cc.Point( 300, 350 ) );
@@ -83,40 +75,55 @@ var GameLayer = cc.LayerColor.extend ({
         }
     },
     
+    updateEnemy: function() {
+        if ( this.enemy.closeTo( this.player ) ) {
+            
+        }
+    },
+    
     setFish: function() {
-        //for (var i = 0; i < 3; i++) {
-            this.fish = new Fish();
-            this.fish.randomPosition();
-            this.addChild( this.fish );
-            this.fish.scheduleUpdate();
-       // }
-        
-//        var posX = [ 50, 500, 350 ];
-//        var posY = [ 200, 310, 310 ];
-//        for ( var i = 0; i < 4; i++ ) {
-//            this.fish = new Fish();
-//            this.fish.setPosition( new cc.Point( posX[i], posY[i] ) );
-//            this.addChild( this.fish );
-//            this.fish.scheduleUpdate();
-//        }
-        
+        this.fish = new Fish();
+        this.fish.randomPosition();
+        this.addChild( this.fish );
+        this.fish.scheduleUpdate();
     },
     
     updateFish: function() {
-        if ( this.gold.closeTo( this.ship ) ) {
-            this.gold.randomPosition();
+        if ( this.fish.closeTo( this.player ) ) {
+            this.fish.randomPosition();
+            this.updateScore();
         }
     },
     
     setHeart: function() {
-        this.heart = new Heart();
-        this.heart.setPosition( new cc.Point( 500, 670 ) );
-        this.addChild( this.heart );
-        this.heart.scheduleUpdate();
+        var posXOfHeart = [ 470, 510, 550 ];
+
+        for ( var i = 0; i < 3; i++ ) {
+            this.heart = new Heart();
+            this.heart.setPosition( new cc.Point( posXOfHeart[i], 650 ) );
+            this.addChild( this.heart );
+            this.heart.scheduleUpdate();
+        }
+        
+//        this.label = cc.LabelTTF.create(": 0", 'Peach Play', 40);
+//        this.label.setPosition(new cc.Point( 500, 650));
+//        this.addChild(this.label);
+    },
+    
+    setScore: function() {
+        this.scoreLabel = cc.LabelTTF.create( "SCORE: ", 'Peach Play', 40 );
+        this.scoreLabel.setPosition(new cc.Point( 100, 650 ) );
+        this.addChild( this.scoreLabel );
+    },
+    
+    updateScore: function() {
+        score += 1;
+        this.scoreLabel.setString( "SCORE: " + score );
     }
+    
 });
  
-var StartScene = cc.Scene.extend({
+var gameLayerScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
         var layer = new GameLayer();

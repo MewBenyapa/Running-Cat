@@ -15,10 +15,12 @@
         "src/resource.js",
         "src/GameLayer.js",
         "src/Player.js",
-        "src/Way.js",
         "src/BG.js",
         "src/Enemy.js",
         "src/Fish.js",
-        "src/Heart.js"
+        "src/Heart.js",
+        "src/FirstScene.js",
+        "src/StartScene.js",
+        "src/Start.js"
     ]
 }
