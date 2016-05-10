@@ -48,6 +48,7 @@ var GameLayer = cc.LayerColor.extend ({
 	   if ( this.fish.closeTo( this.player ) ) {
 	       this.fish.randomPosition();
 	   }
+        this.updateFish();
     },
     
     setPlayer: function() {
@@ -112,7 +113,6 @@ var GameLayer = cc.LayerColor.extend ({
     
     setScore: function() {
         this.scoreLabel = cc.LabelTTF.create( "SCORE: " + score, 'Peach Play', 40 );
-        this.scoreLabel.setString( "SCORE: " + score );
         this.scoreLabel.setPosition(new cc.Point( 100, 650 ) );
         this.addChild( this.scoreLabel );
     },
@@ -120,7 +120,7 @@ var GameLayer = cc.LayerColor.extend ({
     updateScore: function() {
         score += 10;
         this.setScore();
-        //this.scoreLabel.setString( "SCORE: " + score );
+        this.setString( "SCORE: " + String.valueOf( score ) );
     }
     
 });
