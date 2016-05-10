@@ -12,7 +12,7 @@ var FirstScene = cc.LayerColor.extend({
                 
 
         this.playScene();
-        this.startButton();
+       // this.startButton();
         
         this.addKeyboardHandlers();
         
@@ -24,17 +24,17 @@ var FirstScene = cc.LayerColor.extend({
         }
     },
     
-    startButton: function() {
-        this.startButtonItem = new cc.MenuItemImage( 'res/images/startButton.png',
-         function(){
-                this.startButton.setEnabled( false );
-                cc.director.runScene( new gameLayerScene() );
-        },this);
-            this.startButton = new cc.Menu( this.startButtonItem );
-            this.startButton.setPosition( 400, 70 );
-            this.addChild( this.startButton );
-    },
-    
+//    startButton: function() {
+//        this.startButtonItem = new cc.MenuItemImage( 'res/images/startButton.png',
+//         function(){
+//                this.startButton.setEnabled( false );
+//                cc.director.runScene( new gameLayerScene() );
+//        },this);
+//            this.startButton = new cc.Menu( this.startButtonItem );
+//            this.startButton.setPosition( 400, 70 );
+//            this.addChild( this.startButton );
+//    },
+//    
     addKeyboardHandlers: function(){
         var self = this;
 	       cc.eventManager.addListener({
