@@ -22,8 +22,6 @@
         "src/FirstScene.js",
         "src/StartGame.js",
         "src/EndGame.js",
-        "src/GameOver.js",
-        "src/HowTo.js",
-        "src/HowToImage.js"
+        "src/GameOver.js"
     ]
 }
