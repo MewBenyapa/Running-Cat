@@ -51,18 +51,19 @@ var GameLayer = cc.LayerColor.extend ({
             this.updateScore();
             this.fish.randomPosition();
         }
-        
-        if ( this.enemy.closeTo( this.player ) ) {
-            this.enemy.randomPosition();
-            this.updateHeart();
-        }
         for (var i = 0; i < 4; i++) {
-            if (numHeart <= 0) {
-                cc.director.runScene( new GameOverLayer() );
-                score = 0;
-                numHeart = 3;
+            if ( this.enemy[i].closeTo( this.player ) ) {
+                this.enemy[i].randomPosition();
+                this.updateHeart();
             }
         }
+            
+        if (numHeart <= 0) {
+            cc.director.runScene( new GameOverLayer() );
+            score = 0;
+            numHeart = 3;
+        }
+        
     },
     
     setPlayer: function() {
@@ -80,13 +81,14 @@ var GameLayer = cc.LayerColor.extend ({
     },
     
     setEnemy: function() {
+        this.enemy = [] ;
         var posYOfEnemy = [ 1000, 800, 1200, 700 ];
         var posXOfEnemy = [ 100, 220, 350, 480 ];
         for ( var i = 0; i < 4; i++ ) {
-            this.enemy = new Enemy();
-            this.enemy.setPosition( new cc.Point( posXOfEnemy[i], posYOfEnemy[i] ) );
-            this.addChild( this.enemy );
-            this.enemy.scheduleUpdate();
+            this.enemy.push(new Enemy());
+            this.enemy[i].setPosition( new cc.Point( posXOfEnemy[i], posYOfEnemy[i] ) );
+            this.addChild( this.enemy[i] );
+            this.enemy[i].scheduleUpdate();
         }
     },
     
